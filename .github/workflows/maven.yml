@@ -51,10 +51,10 @@ jobs:
           git config --global user.name "Github-CI"
 
       - name: Run release
-        run:
+        uses:
           git config credential.helper "store --file=.git/credentials"
           echo "https://${GH_TOKEN}:@github.com" > .git/credentials
-          ./maybe-release.sh
+        run: ./maybe-release.sh
 
   after_release:
     needs: [ release ]
