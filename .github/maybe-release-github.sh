@@ -3,13 +3,15 @@ set -ev
 echo "branch: $GITHUB_REF_NAME"
 echo "pull request: $GITHUB_REF_PROTECTED"
 echo "repository: $GITHUB_REPOSITORY"
-if [ "$GITHUB_REF_NAME" == "develop" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "swisspost/vertx-redisques" ]
+if [ "$GITHUB_REF_NAME" == "make-vertx-redisques-build-pass-on-github-actions" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
 then
     git reset --hard
     git clean -fd
+    echo 'before Master checked out'
     git checkout master
     echo 'Master checked out'
     groovy staging.groovy drop
+    echo 'after groovy drop'
     rc=$?
     if [ $rc -ne 0 ]
     then
