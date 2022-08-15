@@ -1,9 +1,6 @@
 #!/bin/bash
 set -ev
-echo "branch: $GITHUB_REF_NAME"
-echo "pull request: $GITHUB_REF_PROTECTED"
-echo "repository: $GITHUB_REPOSITORY"
-if [ "$GITHUB_REF_NAME" == "make-vertx-redisques-build-pass-on-github-actions" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
+if [ "$GITHUB_REF_NAME" == "master" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "swisspost/vertx-redisques" ]
 then
     git reset --hard
     git clean -fd

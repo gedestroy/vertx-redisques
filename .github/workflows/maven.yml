@@ -46,10 +46,18 @@ jobs:
           distribution: 'temurin'
 
       - name: Set up CI environment
-        run: .github/setup.sh
+        run: |
+          git config --global user.email "swisspush@post.ch"
+          git config --global user.name "Github-CI"
 
       - name: Run release
-        run: .github/maybe-release-github.sh
+        run: |
+          git config credential.helper "store --file=.git/credentials"
+          echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+          
+          chmod +x .github/maybe-release-github.sh
+          
+          .github/maybe-release-github.sh
 
   after_release:
     needs: [release]
