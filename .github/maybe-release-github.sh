@@ -1,6 +1,6 @@
 #!/bin/bash
 set -ev
-if [ "$GITHUB_REF_NAME" == "master" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "swisspost/vertx-redisques" ]
+if [ "$GITHUB_REF_NAME" == "develop" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "swisspost/vertx-redisques" ]
 then
     git reset --hard
     git clean -fd
