@@ -3,7 +3,7 @@ set -ev
 echo "branch: $GITHUB_REF_NAME"
 echo "pull request: $GITHUB_REF_PROTECTED"
 echo "repository: $GITHUB_REPOSITORY"
-if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "swisspush/vertx-redisques" ]
+if [ "$GITHUB_REF_NAME" == "make-vertx-redisques-build-pass-on-github-actions" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
 then
     git reset --hard
     git clean -fd
