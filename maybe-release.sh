@@ -1,5 +1,8 @@
 #!/bin/bash
 set -ev
+echo $TRAVIS_BRANCH
+echo $TRAVIS_PULL_REQUEST
+echo $TRAVIS_REPO_SLUG
 if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "swisspush/vertx-redisques" ]
 then
     git reset --hard
