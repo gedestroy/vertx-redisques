@@ -1,5 +1,8 @@
 #!/bin/bash
 set -ev
+echo "branch base: $GITHUB_BASE_REF"
+echo "branch pull: $GITHUB_HEAD_REF"
+echo "repository: $GITHUB_REPOSITORY"
 if [ "$TRAVIS_BRANCH" == "master" ] && [ "$TRAVIS_PULL_REQUEST" == "false" ] && [ "$TRAVIS_REPO_SLUG" == "swisspush/vertx-redisques" ]
 then
     git reset --hard

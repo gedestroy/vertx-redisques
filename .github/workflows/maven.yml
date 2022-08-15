@@ -11,7 +11,7 @@ on:
     branches: [ "develop" ]
 
 jobs:
-  build:
+  build_maven:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -35,7 +35,7 @@ jobs:
       run: mvn install -Dmaven.javadoc.skip=true -B -V
 
   release:
-    needs: build
+    needs: build_maven
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -49,7 +49,7 @@ jobs:
         run: .github/setup.sh
 
       - name: Run release
-        run: ./maybe-release.sh
+        run: .github/maybe-release-github.sh
 
   after_release:
     needs: [release]
