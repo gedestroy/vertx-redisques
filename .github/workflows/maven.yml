@@ -45,11 +45,6 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Set up groovy
-        uses: scijava/scripting-groovy@0.4.1
-        with:
-          groovy-version: 3.0.8
-
       - name: Set up CI environment
         run: |
           git config --global user.email "swisspush@post.ch"
@@ -61,6 +56,10 @@ jobs:
           echo "https://${GH_TOKEN}:@github.com" > .git/credentials
           
           chmod +x .github/maybe-release-github.sh
+          
+          curl -s get.sdkman.io | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy 3.0.8
           
           .github/maybe-release-github.sh
 
