@@ -46,7 +46,7 @@ jobs:
           distribution: 'temurin'
 
       - name: Set up groovy
-        uses: scijava/scripting-groovy@0.4.2
+        uses: scijava/scripting-groovy@0.4.1
         with:
           groovy-version: 3.0.8
 
