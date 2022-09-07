@@ -7,7 +7,6 @@ if [ "$GITHUB_REF_NAME" == "master" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] 
 then
     git reset --hard
     git clean -fd
-    git checkout master
     echo 'Master checked out'
     groovy staging.groovy drop
     rc=$?
