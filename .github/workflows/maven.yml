@@ -57,6 +57,10 @@ jobs:
           
           chmod +x .github/maybe-release-github.sh
           
+          curl -s get.sdkman.io | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy 3.0.8
+          
           .github/maybe-release-github.sh
 
   after_release:
