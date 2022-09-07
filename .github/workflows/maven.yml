@@ -47,9 +47,11 @@ jobs:
 
       - name: Set up groovy
         run: |
+          cd .github
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
+          cd ..
 
       - name: Set up CI environment
         run: |
