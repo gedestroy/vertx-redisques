@@ -46,11 +46,10 @@ jobs:
           distribution: 'temurin'
 
       - name: Set up groovy
-        uses: |
-          curl -s get.sdkman.io | bash
-          source "$HOME/.sdkman/bin/sdkman-init.sh"
-          sdk install groovy 3.0.8
-          groovy --version
+      - uses: curl -s get.sdkman.io | bash
+      - uses: source "$HOME/.sdkman/bin/sdkman-init.sh"
+      - uses: sdk install groovy 3.0.8
+      - uses: groovy --version
 
       - name: Set up CI environment
         run: |
