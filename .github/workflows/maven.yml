@@ -45,6 +45,12 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
+      - name: Set up groovy
+        run: |
+          curl -s get.sdkman.io | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy 3.0.8
+
       - name: Set up CI environment
         run: |
           git config --global user.email "swisspush@post.ch"

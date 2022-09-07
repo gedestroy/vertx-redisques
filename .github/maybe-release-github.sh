@@ -7,9 +7,9 @@ if [ "$GITHUB_REF_NAME" == "make-vertx-redisques-build-pass-on-github-actions" ]
 then
     git reset --hard
     git clean -fd
-    echo 'before Master checked out'
-    git checkout master
-    echo 'Master checked out'
+#    echo 'before Master checked out'
+#    git checkout master
+#    echo 'Master checked out'
     groovy staging.groovy drop
     echo 'after groovy drop'
     rc=$?
