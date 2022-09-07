@@ -5,11 +5,6 @@ echo "pull request: $GITHUB_REF_PROTECTED"
 echo "repository: $GITHUB_REPOSITORY"
 if [ "$GITHUB_REF_NAME" == "make-vertx-redisques-build-pass-on-github-actions" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
 then
-    git reset --hard
-    git clean -fd
-#    echo 'before Master checked out'
-#    git checkout master
-#    echo 'Master checked out'
     groovy staging.groovy drop
     echo 'after groovy drop'
     rc=$?
@@ -18,7 +13,9 @@ then
       echo 'problem when trying to drop, ignored'
     fi
      echo 'starting a new nexus repository ...'
-     OUTPUT=$(groovy staging.groovy start)
+     groovy staging.groovy start
+     echo 'get repository id'
+     OUTPUT=$?
      echo "repository Id: $OUTPUT"
      mvn -B -Prelease -PpublicRepos jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
     rc=$?
