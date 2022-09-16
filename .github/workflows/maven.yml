@@ -44,16 +44,11 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+
+      - name: Run release
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
-
-      - if: ${{ env.CI_DEPLOY_USERNAME != '' }}
-        run: echo 'This step will only run if the secret has a value set.'
-      - if: ${{ env.CI_DEPLOY_USERNAME == '' }}
-        run: echo 'This step will only run if the secret does not have a value set.'
-
-      - name: Run release
         run: |
           git config --global user.email "swisspush@post.ch"
           git config --global user.name "Github-CI"
