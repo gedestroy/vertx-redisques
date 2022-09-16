@@ -44,6 +44,8 @@ jobs:
         with:
           java-version: '11'
           distribution: 'temurin'
+          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
+          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
 
       - name: Run release
         run: |
