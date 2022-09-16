@@ -7,6 +7,10 @@ class Staging {
     String ossPassword
 
     Staging(String userName, String password) {
+        if (userName == null)
+            println "username should not empty"
+        if (password == null)
+            println "password should not empty"
         ossUserName = userName
         ossPassword = password
     }
