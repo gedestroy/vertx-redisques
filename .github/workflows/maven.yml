@@ -50,6 +50,8 @@ jobs:
 
       - if: ${{ env.CI_DEPLOY_USERNAME != '' }}
         run: echo 'This step will only run if the secret has a value set.'
+      - if: ${{ env.CI_DEPLOY_USERNAME == '' }}
+        run: echo 'This step will only run if the secret does not have a value set.'
 
       - name: Run release
         run: |
