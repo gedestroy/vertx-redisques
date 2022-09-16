@@ -48,6 +48,9 @@ jobs:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
 
+      - if: ${{ env.CI_DEPLOY_USERNAME != '' }}
+        run: echo 'This step will only run if the secret has a value set.'
+
       - name: Run release
         run: |
           git config --global user.email "swisspush@post.ch"
