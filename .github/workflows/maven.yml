@@ -37,9 +37,6 @@ jobs:
   release:
     needs: build_maven
     runs-on: ubuntu-latest
-    env:
-      CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
-      CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
 
     steps:
       - uses: actions/checkout@v3
@@ -50,6 +47,9 @@ jobs:
           distribution: 'temurin'
 
       - name: Run release
+        env:
+          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
+          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
         run: |
           git config --global user.email "swisspush@post.ch"
           git config --global user.name "Github-CI"
