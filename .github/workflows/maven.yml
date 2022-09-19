@@ -49,7 +49,7 @@ jobs:
       - name: Run release
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
-          CI_DEPLOY_PASSWORD: 'PASSWORD'
+          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
         run: |
           git config --global user.email "swisspush@post.ch"
           git config --global user.name "Github-CI"
