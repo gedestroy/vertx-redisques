@@ -6,16 +6,13 @@ then
     git clean -fd
     git pull
     groovy staging.groovy drop
-    echo 'after groovy drop'
     rc=$?
     if [ $rc -ne 0 ]
     then
       echo 'problem when trying to drop, ignored'
     fi
      echo 'starting a new nexus repository ...'
-     groovy staging.groovy start
-     echo 'get repository id'
-     OUTPUT=$?
+     OUTPUT=$(groovy staging.groovy start)
      echo "repository Id: $OUTPUT"
      mvn -B -Prelease -PpublicRepos jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
     rc=$?
