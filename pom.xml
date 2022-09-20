@@ -281,6 +281,14 @@
             </build>
         </profile>
         <profile>
+            <id>publicRepos</id>
+            <properties>
+                <nodeDownloadRoot>https://nodejs.org/dist/</nodeDownloadRoot>
+                <npmDownloadRoot>http://registry.npmjs.org/npm/-/</npmDownloadRoot>
+                <npmrcFile>.npmrc-public</npmrcFile>
+            </properties>
+        </profile>
+        <profile>
             <id>sonatype-oss-release</id>
             <build>
                 <plugins>
