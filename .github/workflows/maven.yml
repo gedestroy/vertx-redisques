@@ -71,6 +71,8 @@ jobs:
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
           
+          export GPG_TTY=$(tty)
+          
           .github/maybe-release-github.sh
 
   after_release:
