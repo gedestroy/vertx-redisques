@@ -55,6 +55,7 @@ jobs:
       - name: Install groovy
         run: |
           pwd
+          echo $HOME
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
@@ -68,10 +69,6 @@ jobs:
           GPG_TTY: tty
         run: |
           pwd
-          cd $GITHUB_WORKSPACE
-          echo $GITHUB_WORKSPACE
-          pwd
-
           chmod +x .github/maybe-release-github.sh
           
           .github/maybe-release-github.sh
