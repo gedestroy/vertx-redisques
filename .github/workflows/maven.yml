@@ -55,11 +55,11 @@ jobs:
       - name: Install groovy
         run: |
           pwd
-          echo $HOME
           curl -s get.sdkman.io | bash
+          pwd
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
-          
+          pwd
           groovy --version
 
       - name: Run release
