@@ -23,7 +23,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'adopt'
+          distribution: 'temurin'
           cache: maven
 
       - name: Start Redis
@@ -44,7 +44,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'adopt'
+          distribution: 'temurin'
           cache: maven
 
       - name: Start Redis
@@ -58,6 +58,7 @@ jobs:
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
           CI_PGP_PASSWORD: ${{ secrets.CI_PGP_PASSWORD }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
+          GPG_TTY: tty
         run: |
           git config --global user.email "swisspush@post.ch"
           git config --global user.name "Github-CI"
@@ -82,7 +83,7 @@ jobs:
         uses: actions/setup-java@v3
         with:
           java-version: '11'
-          distribution: 'adopt'
+          distribution: 'temurin'
 
       - name: Run after release
         run: bash <(curl -s https://codecov.io/bash)
