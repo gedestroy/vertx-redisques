@@ -58,8 +58,13 @@ jobs:
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
           CI_PGP_PASSWORD: ${{ secrets.CI_PGP_PASSWORD }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GPG_TTY: tty
         run: |
+          git config --global user.email "swisspush@post.ch"
+          git config --global user.name "Github-CI"
+          
+          git config credential.helper "store --file=.git/credentials"
+          echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+          
           chmod +x .github/maybe-release-github.sh
           
           curl -s get.sdkman.io | bash
