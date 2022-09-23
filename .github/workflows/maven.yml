@@ -34,6 +34,12 @@ jobs:
       - name: Build with Maven
         run: mvn install -Dmaven.javadoc.skip=true -B -V
 
+      - name: Install groovy
+        run: |
+          curl -s get.sdkman.io | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy 3.0.8
+
       - name: Run release
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
@@ -42,10 +48,6 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GPG_TTY: tty
         run: |
-          curl -s get.sdkman.io | bash
-          source "$HOME/.sdkman/bin/sdkman-init.sh"
-          sdk install groovy 3.0.8
-
           chmod +x $GITHUB_WORKSPACE/.github/maybe-release-github.sh
           
           $GITHUB_WORKSPACE/.github/maybe-release-github.sh
