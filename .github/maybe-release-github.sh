@@ -2,6 +2,7 @@
 set -ev
 if [ "$GITHUB_REF_NAME" == "make-vertx-redisques-build-pass-on-github-actions" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
 then
+    pwd
     git reset --hard
     git clean -fd
     git pull
