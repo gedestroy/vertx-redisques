@@ -1,8 +1,5 @@
 #!/bin/bash
 set -ev
-echo "branch: $GITHUB_REF_NAME"
-echo "pull request: $GITHUB_REF_PROTECTED"
-echo "repository: $GITHUB_REPOSITORY"
 if [ "$GITHUB_REF_NAME" == "develop" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
 then
     git reset --hard
