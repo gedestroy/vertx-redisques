@@ -46,9 +46,9 @@ jobs:
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
 
-          chmod +x $GITHUB_WORKSPACE/.github/maybe-release-github.sh
+          chmod +x .github/maybe-release-github.sh
           
-          $GITHUB_WORKSPACE/.github/maybe-release-github.sh
+          .github/maybe-release-github.sh
 
       - name: Run after release
         run: bash <(curl -s https://codecov.io/bash)
