@@ -6,7 +6,7 @@ name: Java CI with Maven
 on:
   workflow_dispatch:
   push:
-    branches: [ "make-vertx-redisques-build-pass-on-github-actions" ]
+    branches: [ "develop" ]
   pull_request:
     branches: [ "develop" ]
 
