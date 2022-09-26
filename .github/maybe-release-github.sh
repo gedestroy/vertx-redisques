@@ -2,10 +2,10 @@
 set -ev
 if [ "$GITHUB_REF_NAME" == "develop" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
 then
-    pwd
     git reset --hard
     git clean -fd
-    git pull
+    git checkout master
+    echo 'Master checked out'
     groovy staging.groovy drop
     rc=$?
     if [ $rc -ne 0 ]
@@ -15,7 +15,7 @@ then
      echo 'starting a new nexus repository ...'
      OUTPUT=$(groovy staging.groovy start)
      echo "repository Id: $OUTPUT"
-     mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
+     mvn -B -Prelease -PpublicRepos jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
     rc=$?
     if [ $rc -eq 0 ]
     then
