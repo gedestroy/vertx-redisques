@@ -42,6 +42,12 @@ jobs:
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GPG_TTY: tty
         run: |
+          git config --global user.email "swisspush@post.ch"
+          git config --global user.name "Github-CI"
+          
+          git config credential.helper "store --file=.git/credentials"
+          echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
