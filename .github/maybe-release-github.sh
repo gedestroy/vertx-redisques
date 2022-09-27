@@ -2,6 +2,9 @@
 set -ev
 if [ "$GITHUB_REF_NAME" == "develop" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
 then
+    git reset --hard
+    git clean -fd
+    git pul
     groovy staging.groovy drop
     rc=$?
     if [ $rc -ne 0 ]
