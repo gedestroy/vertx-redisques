@@ -41,7 +41,6 @@ jobs:
           CI_PGP_PASSWORD: ${{ secrets.CI_PGP_PASSWORD }}
           GH_TOKEN: ${{ secrets.GH_TOKEN }}
           GPG_TTY: tty
-      - name: Run release
         run: |
           git config --global user.email "swisspush@post.ch"
           git config --global user.name "Github-CI"
