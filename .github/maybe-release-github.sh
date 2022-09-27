@@ -4,7 +4,7 @@ if [ "$GITHUB_REF_NAME" == "develop" ] && [ "$GITHUB_REF_PROTECTED" == "false" ]
 then
     git reset --hard
     git clean -fd
-    git pul
+    git pull
     groovy staging.groovy drop
     rc=$?
     if [ $rc -ne 0 ]
