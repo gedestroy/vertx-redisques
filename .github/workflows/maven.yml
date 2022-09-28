@@ -47,6 +47,10 @@ jobs:
           
           git config credential.helper "store --file=.git/credentials"
           echo "https://${GH_TOKEN}:@github.com" > .git/credentials
+          
+          git reset --hard
+          git clean -fd
+          git pull
 
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
