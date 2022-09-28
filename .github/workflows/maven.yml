@@ -15,6 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     strategy:
       matrix:
+        maven: [ '3.6.3']
         redis-version: [ 4 ]
 
     steps:
