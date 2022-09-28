@@ -14,8 +14,7 @@ then
     echo 'starting a new nexus repository ...'
     OUTPUT=$(groovy staging.groovy start)
     echo "repository Id: $OUTPUT"
-    cat settings.xml
-    if [ ${env.CI_PGP_PASSWORD} == "" ]
+    if [ $CI_PGP_PASSWORD == "" ]
     then
       echo 'no CI_PGP_PASSWORD'
     fi
