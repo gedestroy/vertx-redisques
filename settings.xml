@@ -6,5 +6,9 @@
             <username>${env.CI_DEPLOY_USERNAME}</username>
             <password>${env.CI_DEPLOY_PASSWORD}</password>
         </server>
+        <server>
+            <id>gpg.passphrase</id>
+            <passphrase>${env.CI_PGP_PASSWORD}</passphrase>
+        </server>
     </servers>
 </settings>

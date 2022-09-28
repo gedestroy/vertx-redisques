@@ -11,10 +11,15 @@ then
     then
       echo 'problem when trying to drop, ignored'
     fi
-     echo 'starting a new nexus repository ...'
-     OUTPUT=$(groovy staging.groovy start)
-     echo "repository Id: $OUTPUT"
-     mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
+    echo 'starting a new nexus repository ...'
+    OUTPUT=$(groovy staging.groovy start)
+    echo "repository Id: $OUTPUT"
+    cat settings.xml
+    if [ ${env.CI_PGP_PASSWORD} == "" ]
+    then
+      echo 'no CI_PGP_PASSWORD'
+    fi
+    mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
     rc=$?
     if [ $rc -eq 0 ]
     then
