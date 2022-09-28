@@ -39,19 +39,14 @@ jobs:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
           CI_PGP_PASSWORD: ${{ secrets.CI_PGP_PASSWORD }}
-          GH_TOKEN: ${{ secrets.GH_TOKEN }}
-          GPG_TTY: tty
         run: |
-          pwd
-          ls
-          
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
 
-          chmod +x $GITHUB_WORKSPACE/.github/maybe-release-github.sh
+          chmod +x ./maybe-release-github.sh
           
-          $GITHUB_WORKSPACE/.github/maybe-release-github.sh
+          ./maybe-release-github.sh
 
       - name: Run after release
         run: bash <(curl -s https://codecov.io/bash)
