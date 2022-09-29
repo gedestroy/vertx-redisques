@@ -61,10 +61,12 @@ jobs:
         run: |
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
-          sdk install groovy 3.0.8
+#          sdk install groovy 3.0.8
 
       - name: Staging drop
-        run: groovy staging.groovy drop
+        run: |
+          sdk install groovy 3.0.8
+          groovy staging.groovy drop
 
       - name: Staging start
         run: |
