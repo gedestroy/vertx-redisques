@@ -65,7 +65,10 @@ jobs:
           OUTPUT=$(groovy staging.groovy start)
           echo "repository Id: $OUTPUT"
 
-          cat settings.xml
+          pwd
+          ls pubring.gpg
+          ls secring.gpg
+          git pull
           mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
 
           groovy staging.groovy close ${OUTPUT}
