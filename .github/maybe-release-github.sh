@@ -14,6 +14,7 @@ then
     echo 'starting a new nexus repository ...'
     OUTPUT=$(groovy staging.groovy start)
     echo "repository Id: $OUTPUT"
+    export GPG_TTY=$(tty)
     mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
     rc=$?
     if [ $rc -eq 0 ]
