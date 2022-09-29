@@ -64,6 +64,8 @@ jobs:
           groovy staging.groovy drop
           OUTPUT=$(groovy staging.groovy start)
           echo "repository Id: $OUTPUT"
+          
+          gpg --version
 
           git pull
           mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -DrepositoryId=${OUTPUT}
