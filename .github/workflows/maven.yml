@@ -13,6 +13,27 @@ on:
 jobs:
   build_maven:
     runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
+          cache: maven
+
+      - name: Start Redis
+        uses: supercharge/redis-github-action@1.4.0
+        with:
+          redis-version: 4
+
+      - name: Build with Maven
+        run: mvn install -Dmaven.javadoc.skip=true -B -V
+
+  release:
+    needs: build_maven
+    if: github.ref_name == 'develop' && !github.ref_protected && github.repository == 'gedestroy/vertx-redisques'
+    runs-on: ubuntu-latest
 
     steps:
       - uses: actions/checkout@v3
@@ -31,9 +52,6 @@ jobs:
         with:
           redis-version: 4
 
-      - name: Build with Maven
-        run: mvn install -Dmaven.javadoc.skip=true -B -V
-
       - name: Run release
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
@@ -44,9 +62,20 @@ jobs:
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
 
-          chmod +x ./.github/maybe-release-github.sh
+          chmod +x .github/maybe-release-github.sh
           
-          ./.github/maybe-release-github.sh
+          .github/maybe-release-github.sh
+
+  after_release:
+    needs: release
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+      - name: Set up JDK 11
+        uses: actions/setup-java@v3
+        with:
+          java-version: '11'
+          distribution: 'temurin'
 
       - name: Run after release
         run: bash <(curl -s https://codecov.io/bash)
