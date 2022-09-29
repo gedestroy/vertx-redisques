@@ -166,7 +166,6 @@
                             <configuration>
                                 <homedir>${session.executionRootDirectory}</homedir>
                                 <keyname>230584D7</keyname>
-                                <passphrase>${env.CI_PGP_PASSWORD}</passphrase>
                                 <!--<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>-->
                             </configuration>
                         </execution>
