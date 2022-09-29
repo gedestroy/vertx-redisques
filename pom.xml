@@ -163,11 +163,11 @@
                             <goals>
                                 <goal>sign</goal>
                             </goals>
-<!--                            <configuration>-->
-<!--                                <homedir>${session.executionRootDirectory}</homedir>-->
-<!--                                <keyname>230584D7</keyname>-->
-<!--                                &lt;!&ndash;<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>&ndash;&gt;-->
-<!--                            </configuration>-->
+                            <configuration>
+                                <homedir>${session.executionRootDirectory}</homedir>
+                                <keyname>230584D7</keyname>
+                                <!--<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>-->
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>

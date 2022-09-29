@@ -34,6 +34,11 @@ jobs:
     needs: build_maven
     if: github.ref_name == 'make-vertx-redisques-build-pass-on-github-actions' && !github.ref_protected && github.repository == 'gedestroy/vertx-redisques'
     runs-on: ubuntu-latest
+    env:
+      CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
+      CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
+      CI_PGP_PASSWORD: ${{ secrets.CI_PGP_PASSWORD }}
+      GPG_TTY: ${{ tty }}
 
     steps:
       - uses: actions/checkout@v3
@@ -52,19 +57,37 @@ jobs:
         with:
           redis-version: 4
 
-      - name: Run release
-        env:
-          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
-          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
-          CI_PGP_PASSWORD: ${{ secrets.CI_PGP_PASSWORD }}
+      - name: Install groovy
         run: |
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
 
-          chmod +x .github/maybe-release-github.sh
-          
-          .github/maybe-release-github.sh
+      - name: Staging drop
+        run: groovy staging.groovy drop
+
+      - name: Staging start
+        run: |
+          OUTPUT=$(groovy staging.groovy start)
+          echo "repository Id: $OUTPUT"
+
+      - name: Run release
+        run: |
+          cat settings.xml
+          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
+
+      - name: Staging close
+        run: groovy staging.groovy close ${OUTPUT}
+
+      - name: Staging promote
+        run: groovy staging.groovy promote ${OUTPUT}
+
+      - name: Update tag
+        run: |
+          git tag
+          git push --tags
+          git checkout develop
+          git push origin develop
 
   after_release:
     needs: release
