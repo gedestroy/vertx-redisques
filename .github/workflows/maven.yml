@@ -65,9 +65,8 @@ jobs:
           OUTPUT=$(groovy staging.groovy start)
           echo "repository Id: $OUTPUT"
 
-          ls -alt $GITHUB_WORKSPACE/secring.gpg
           git pull
-          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
+          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -DrepositoryId=${OUTPUT}
 
           groovy staging.groovy close ${OUTPUT}
           groovy staging.groovy promote ${OUTPUT}
