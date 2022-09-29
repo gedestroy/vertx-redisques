@@ -32,7 +32,7 @@ jobs:
 
   release:
     needs: build_maven
-    if: github.ref_name == 'develop' && !github.ref_protected && github.repository == 'gedestroy/vertx-redisques'
+    if: github.ref_name == 'make-vertx-redisques-build-pass-on-github-actions' && !github.ref_protected && github.repository == 'gedestroy/vertx-redisques'
     runs-on: ubuntu-latest
 
     steps:
