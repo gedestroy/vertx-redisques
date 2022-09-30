@@ -167,12 +167,12 @@
                                 <homedir>${session.executionRootDirectory}</homedir>
                                 <keyname>230584D7</keyname>
                                 <!--<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>-->
-                                <passphrase>${env.CI_PGP_PASSWORD}</passphrase>
-                                <!-- Prevent gpg from using pinentry programs -->
-                                <gpgArguments>
-                                    <arg>--pinentry-mode</arg>
-                                    <arg>loopback</arg>
-                                </gpgArguments>
+
+<!--                                &lt;!&ndash; Prevent gpg from using pinentry programs &ndash;&gt;-->
+<!--                                <gpgArguments>-->
+<!--                                    <arg>&#45;&#45;pinentry-mode</arg>-->
+<!--                                    <arg>loopback</arg>-->
+<!--                                </gpgArguments>-->
                             </configuration>
                         </execution>
                     </executions>
@@ -331,6 +331,12 @@
                                     <homedir>${session.executionRootDirectory}</homedir>
                                     <keyname>230584D7</keyname>
                                     <!--<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>-->
+
+                                    <!-- Prevent gpg from using pinentry programs -->
+                                    <gpgArguments>
+                                        <arg>--pinentry-mode</arg>
+                                        <arg>loopback</arg>
+                                    </gpgArguments>
                                 </configuration>
                             </execution>
                         </executions>
