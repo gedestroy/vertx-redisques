@@ -163,17 +163,11 @@
                             <goals>
                                 <goal>sign</goal>
                             </goals>
-<!--                            <configuration>-->
-<!--                                <homedir>${session.executionRootDirectory}</homedir>-->
-<!--                                <keyname>230584D7</keyname>-->
-<!--                                &lt;!&ndash;<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>&ndash;&gt;-->
-
-<!--                                &lt;!&ndash; Prevent gpg from using pinentry programs &ndash;&gt;-->
-<!--                                <gpgArguments>-->
-<!--                                    <arg>&#45;&#45;pinentry-mode</arg>-->
-<!--                                    <arg>loopback</arg>-->
-<!--                                </gpgArguments>-->
-<!--                            </configuration>-->
+                            <configuration>
+                                <homedir>${session.executionRootDirectory}</homedir>
+                                <keyname>230584D7</keyname>
+                                <!--<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>-->
+                            </configuration>
                         </execution>
                     </executions>
                 </plugin>
@@ -327,17 +321,11 @@
                                 <goals>
                                     <goal>sign</goal>
                                 </goals>
-<!--                                <configuration>-->
-<!--                                    <homedir>${session.executionRootDirectory}</homedir>-->
-<!--                                    <keyname>230584D7</keyname>-->
-<!--                                    &lt;!&ndash;<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>&ndash;&gt;-->
-
-<!--                                    &lt;!&ndash; Prevent gpg from using pinentry programs &ndash;&gt;-->
-<!--                                    <gpgArguments>-->
-<!--                                        <arg>&#45;&#45;pinentry-mode</arg>-->
-<!--                                        <arg>loopback</arg>-->
-<!--                                    </gpgArguments>-->
-<!--                                </configuration>-->
+                                <configuration>
+                                    <homedir>${session.executionRootDirectory}</homedir>
+                                    <keyname>230584D7</keyname>
+                                    <!--<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>-->
+                                </configuration>
                             </execution>
                         </executions>
                     </plugin>
