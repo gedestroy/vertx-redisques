@@ -22,13 +22,13 @@ jobs:
           distribution: 'temurin'
           cache: maven
 
-      - name: Start Redis
-        uses: supercharge/redis-github-action@1.4.0
-        with:
-          redis-version: 4
-
-      - name: Build with Maven
-        run: mvn install -Dmaven.javadoc.skip=true -B -V
+#      - name: Start Redis
+#        uses: supercharge/redis-github-action@1.4.0
+#        with:
+#          redis-version: 4
+#
+#      - name: Build with Maven
+#        run: mvn install -Dmaven.javadoc.skip=true -B -V
 
   release:
     needs: build_maven
@@ -60,6 +60,8 @@ jobs:
           CI_PGP_PASSWORD: ${{ secrets.CI_PGP_PASSWORD }}
           GPG_TTY: $(tty)
         run: |
+          mvn install -Dmaven.javadoc.skip=true -B -V
+          
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
