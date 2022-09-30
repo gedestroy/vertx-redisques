@@ -43,11 +43,6 @@ jobs:
           java-version: '11'
           distribution: 'temurin'
 
-      - name: Set up Maven
-        uses: aahmed-se/setup-maven@v3
-        with:
-          maven-version: 3.6.1
-
       - name: Start Redis
         uses: supercharge/redis-github-action@1.4.0
         with:
@@ -58,6 +53,7 @@ jobs:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
           CI_PGP_PASSWORD: ${{ secrets.CI_PGP_PASSWORD }}
+          GITHUB_TOKEN: ${{ github.token }}
           GPG_TTY: $(tty)
         run: |
           mvn install -Dmaven.javadoc.skip=true -B -V
@@ -72,7 +68,7 @@ jobs:
 
           git pull
           
-          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
+          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -s $GITHUB_WORKSPACE/settings.xml -DrepositoryId=${OUTPUT}
 
           groovy staging.groovy close ${OUTPUT}
           groovy staging.groovy promote ${OUTPUT}
