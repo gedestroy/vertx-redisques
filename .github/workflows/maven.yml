@@ -67,8 +67,6 @@ jobs:
 
           git pull
           
-          mvn verify -Dgpg.passphrase=${CI_PGP_PASSWORD}
-          
           mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
 
           groovy staging.groovy close ${OUTPUT}
