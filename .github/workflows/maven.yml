@@ -46,7 +46,7 @@ jobs:
       - name: Set up Maven
         uses: aahmed-se/setup-maven@v3
         with:
-          maven-version: 3.6.3
+          maven-version: 3.6.1
 
       - name: Start Redis
         uses: supercharge/redis-github-action@1.4.0
@@ -70,7 +70,7 @@ jobs:
 
           git pull
           
-          mvn -X -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
+          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
 
           groovy staging.groovy close ${OUTPUT}
           groovy staging.groovy promote ${OUTPUT}
