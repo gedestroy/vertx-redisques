@@ -76,12 +76,12 @@ jobs:
 #          groovy staging.groovy close ${OUTPUT}
 #          groovy staging.groovy promote ${OUTPUT}
 
-      - name: Update tag
-        run: |
-          git tag
-          git push --tags
-          git checkout develop
-          git push origin develop
+#      - name: Update tag
+#        run: |
+#          git tag
+#          git push --tags
+#          git checkout develop
+#          git push origin develop
 
   after_release:
     needs: release
