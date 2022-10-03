@@ -15,7 +15,7 @@ then
     OUTPUT=$(groovy staging.groovy start)
     echo "repository Id: $OUTPUT"
     export GPG_TTY=$(tty)
-    mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
+    mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -DrepositoryId=${OUTPUT}
     rc=$?
     if [ $rc -eq 0 ]
     then
