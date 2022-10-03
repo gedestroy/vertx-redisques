@@ -68,7 +68,7 @@ jobs:
       - name: Publish to Apache Maven Central
         run: |
           git pull
-          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -DrepositoryId=${OUTPUT}
+          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -s settings.xml -DrepositoryId=${OUTPUT}
         env:
           MAVEN_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.CI_DEPLOY_PASSWORD }}
