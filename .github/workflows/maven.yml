@@ -59,6 +59,7 @@ jobs:
           MAVEN_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           MAVEN_CENTRAL_TOKEN: ${{ secrets.CI_DEPLOY_PASSWORD }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
+          GPG_TTY: $(tty)
         run: |
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
