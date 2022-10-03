@@ -64,15 +64,17 @@ jobs:
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
 
-          groovy staging.groovy drop
-          OUTPUT=$(groovy staging.groovy start)
-          echo "repository Id: $OUTPUT"
-          
-          git pull
-          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
-          
-          groovy staging.groovy close ${OUTPUT}
-          groovy staging.groovy promote ${OUTPUT}    
+          chmod +x .github/maybe-release-github.sh
+          .github/maybe-release-github.sh
+#          groovy staging.groovy drop
+#          OUTPUT=$(groovy staging.groovy start)
+#          echo "repository Id: $OUTPUT"
+#
+#          git pull
+#          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
+#
+#          groovy staging.groovy close ${OUTPUT}
+#          groovy staging.groovy promote ${OUTPUT}
 
       - name: Update tag
         run: |
