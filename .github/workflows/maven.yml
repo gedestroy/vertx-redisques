@@ -52,10 +52,13 @@ jobs:
         with:
           redis-version: 4
 
-      - name: Run start stage
+      - name: release
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
+          MAVEN_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
+          MAVEN_CENTRAL_TOKEN: ${{ secrets.CI_DEPLOY_PASSWORD }}
+          MAVEN_GPG_PASSPHRASE: ${{ secrets.MAVEN_GPG_PASSPHRASE }}
         run: |
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
@@ -63,32 +66,16 @@ jobs:
 
           groovy staging.groovy drop
           OUTPUT=$(groovy staging.groovy start)
-
-      - name: Publish to Apache Maven Central
-        run: |
           echo "repository Id: $OUTPUT"
-          git pull
+          
           mvn -B -Prelease 
           jgitflow:release-start 
           jgitflow:release-finish 
-          -s settings.xml 
+          --settings settings.xml 
           -DrepositoryId=${OUTPUT}
-        env:
-          MAVEN_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
-          MAVEN_CENTRAL_TOKEN: ${{ secrets.CI_DEPLOY_PASSWORD }}
-          MAVEN_GPG_PASSPHRASE: ${{ secrets.CI_PGP_PASSWORD }}
-
-      - name: Run close stage
-        env:
-          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
-          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
-        run: |
-          curl -s get.sdkman.io | bash
-          source "$HOME/.sdkman/bin/sdkman-init.sh"
-          sdk install groovy 3.0.8
-
+          
           groovy staging.groovy close ${OUTPUT}
-          groovy staging.groovy promote ${OUTPUT}
+          groovy staging.groovy promote ${OUTPUT}    
 
       - name: Update tag
         run: |
