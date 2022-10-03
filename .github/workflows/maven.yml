@@ -68,11 +68,7 @@ jobs:
           OUTPUT=$(groovy staging.groovy start)
           echo "repository Id: $OUTPUT"
           
-          mvn -B -Prelease 
-          jgitflow:release-start 
-          jgitflow:release-finish 
-          --settings settings.xml 
-          -DrepositoryId=${OUTPUT}
+          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
           
           groovy staging.groovy close ${OUTPUT}
           groovy staging.groovy promote ${OUTPUT}    
