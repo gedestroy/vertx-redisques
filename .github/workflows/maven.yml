@@ -71,8 +71,6 @@ jobs:
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
 
-#          chmod +x .github/maybe-release-github.sh
-#          .github/maybe-release-github.sh
           groovy staging.groovy drop
           OUTPUT=$(groovy staging.groovy start)
           echo "repository Id: $OUTPUT"
@@ -82,6 +80,9 @@ jobs:
 
           groovy staging.groovy close ${OUTPUT}
           groovy staging.groovy promote ${OUTPUT}
+
+#          chmod +x .github/maybe-release-github.sh
+#          .github/maybe-release-github.sh
 
       - name: Update tag
         run: |
