@@ -77,7 +77,7 @@ jobs:
           echo "repository Id: $OUTPUT"
 
           git pull
-          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -DrepositoryId=${OUTPUT}
+          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -Dgpg.passphrase=${{ secrets.CI_PGP_PASSWORD }} -DrepositoryId=${OUTPUT}
 
           groovy staging.groovy close ${OUTPUT}
           groovy staging.groovy promote ${OUTPUT}
