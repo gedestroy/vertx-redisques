@@ -43,6 +43,7 @@ jobs:
           distribution: 'temurin'
           server-username: MAVEN_USERNAME
           server-password: MAVEN_CENTRAL_TOKEN
+          gpg-private-key: ${{ secrets.CI_PGP_PRIVATE_KEY }}
           gpg-passphrase: MAVEN_GPG_PASSPHRASE
 
       - name: Start Redis
@@ -58,14 +59,11 @@ jobs:
           MAVEN_USERNAME: "Github-CI"
           MAVEN_CENTRAL_TOKEN: ${{ secrets.GH_TOKEN }}
           MAVEN_GPG_PASSPHRASE: ${{ secrets.CI_PGP_PASSWORD }}
+          GPG_TTY: $(tty)
         run: |
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
-          
-          mkdir -p $HOME/.gnupg
-          cp secring.gpg $HOME/.gnupg/.
-          cp pubring.gpg $HOME/.gnupg/.
 
           chmod +x .github/maybe-release-github.sh
           .github/maybe-release-github.sh
