@@ -34,11 +34,8 @@ jobs:
         with:
           redis-version: 4
 
-      - name: Release
-        run: |
-          git pull
-          mvn install -Dmaven.javadoc.skip=true -B -V
-          mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -DrepositoryId=orgswisspush-1727
+      - name: maven release
+        run: mvn clean deploy --no-plugin-updates --batch-mode -DperformRelease=true -DrepositoryId=orgswisspush-1727 -Prelease
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
