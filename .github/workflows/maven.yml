@@ -49,7 +49,7 @@ jobs:
           gpg-passphrase: CI_PGP_PASSWORD # env variable for GPG private key passphrase
 
       - name: Publish to Apache Maven Central
-        run: mvn -B deploy -Prelease -DperformRelease=true
+        run: mvn -B deploy -Prelease -DperformRelease=true -s settings.xml
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
