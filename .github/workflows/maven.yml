@@ -32,7 +32,7 @@ jobs:
       - name: Publish to GitHub Packages Apache Maven
         run: mvn deploy
         env:
-          GITHUB_TOKEN: ${{ github.token }} # GITHUB_TOKEN is the default env for the password
+          GITHUB_TOKEN: ${{ secrets.GH_TOKEN }} # GITHUB_TOKEN is the default env for the password
 
       - name: Set up Apache Maven Central
         uses: actions/setup-java@v3
