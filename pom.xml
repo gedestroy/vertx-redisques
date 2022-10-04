@@ -164,10 +164,6 @@
                                 <goal>sign</goal>
                             </goals>
                             <configuration>
-                                <homedir>${session.executionRootDirectory}</homedir>
-                                <keyname>230584D7</keyname>
-                                <!--<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>-->
-
                                 <!-- Prevent gpg from using pinentry programs -->
                                 <gpgArguments>
                                     <arg>--pinentry-mode</arg>
@@ -328,10 +324,6 @@
                                     <goal>sign</goal>
                                 </goals>
                                 <configuration>
-                                    <homedir>${session.executionRootDirectory}</homedir>
-                                    <keyname>230584D7</keyname>
-                                    <!--<executable>C:\Program Files (x86)\GnuPG\bin\gpg.exe</executable>-->
-
                                     <!-- Prevent gpg from using pinentry programs -->
                                     <gpgArguments>
                                         <arg>--pinentry-mode</arg>
