@@ -24,7 +24,7 @@ jobs:
       - name: Start Redis
         uses: supercharge/redis-github-action@1.4.0
         with:
-          redis-version: 4.3.3
+          redis-version: 4
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
