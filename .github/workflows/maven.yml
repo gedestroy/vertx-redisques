@@ -35,7 +35,7 @@ jobs:
           redis-version: 4
 
       - name: maven release
-        run: mvn clean deploy -s settings.xml --no-plugin-updates --batch-mode -DperformRelease=true -DrepositoryId=orgswisspush-1727 -Prelease
+        run: mvn clean deploy -s $HOME/.m2/settings.xml --no-plugin-updates --batch-mode -DperformRelease=true -DrepositoryId=orgswisspush-1727 -Prelease
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
