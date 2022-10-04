@@ -26,6 +26,8 @@ jobs:
           server-id: 'sonatype-nexus-staging'
           server-username: CI_DEPLOY_USERNAME
           server-password: CI_DEPLOY_PASSWORD
+          gpg-private-key: ${{ secrets.CI_PGP_PRIVATE_KEY }}
+          gpg-passphrase: CI_PGP_PASSWORD
 
       - name: Start Redis
         uses: supercharge/redis-github-action@1.4.0
@@ -33,7 +35,7 @@ jobs:
           redis-version: 4
 
       - name: Publish to the Maven Central Repository
-        run: mvn --batch-mode deploy
+        run: mvn --batch-mode deploy -DrepositoryId=orgswisspush-1727
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
