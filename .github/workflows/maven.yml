@@ -62,6 +62,10 @@ jobs:
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
           sdk install groovy 3.0.8
+          
+          mkdir -p $HOME/.gnupg
+          cp secring.gpg $HOME/.gnupg/.
+          cp pubring.gpg $HOME/.gnupg/.
 
           chmod +x .github/maybe-release-github.sh
           .github/maybe-release-github.sh
