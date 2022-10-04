@@ -34,9 +34,10 @@ jobs:
         with:
           redis-version: 4
 
-      - name: Publish to the Maven Central Repository
+      - name: Release
         run: |
           git pull
+          mvn install -Dmaven.javadoc.skip=true -B -V
           mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -DrepositoryId=orgswisspush-1727
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
