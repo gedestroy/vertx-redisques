@@ -182,8 +182,8 @@
                 <version>1.0-m5.1</version>
                 <configuration>
                     <flowInitContext>
-                        <masterBranchName>master</masterBranchName>
-                        <developBranchName>develop</developBranchName>
+                        <masterBranchName>develop</masterBranchName>
+                        <developBranchName>make-vertx-redisques-build-pass-on-github-actions</developBranchName>
                         <featureBranchPrefix>feature-</featureBranchPrefix>
                         <releaseBranchPrefix>release-</releaseBranchPrefix>
                         <hotfixBranchPrefix>hotfix-</hotfixBranchPrefix>
