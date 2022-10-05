@@ -1,6 +1,6 @@
 #!/bin/bash
 set -ev
-if [ "$GITHUB_REF_NAME" == "develop" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
+if [ "$GITHUB_REF_NAME" == "make-vertx-redisques-build-pass-on-github-actions" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
 then
     git reset --hard
     git clean -fd
@@ -11,10 +11,10 @@ then
     then
       echo 'problem when trying to drop, ignored'
     fi
-     echo 'starting a new nexus repository ...'
-     OUTPUT=$(groovy staging.groovy start)
-     echo "repository Id: $OUTPUT"
-     mvn -B -Prelease jgitflow:release-start jgitflow:release-finish --settings settings.xml -DrepositoryId=${OUTPUT}
+    echo 'starting a new nexus repository ...'
+    OUTPUT=$(groovy staging.groovy start)
+    echo "repository Id: $OUTPUT"
+    mvn -B -Prelease jgitflow:release-start jgitflow:release-finish -DrepositoryId=${OUTPUT}
     rc=$?
     if [ $rc -eq 0 ]
     then
