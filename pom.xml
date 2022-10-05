@@ -158,11 +158,11 @@
                     <version>1.6</version>
                     <executions>
                         <execution>
-                            <id>sign-artifacts</id>
-                            <phase>verify</phase>
-                            <goals>
-                                <goal>sign</goal>
-                            </goals>
+<!--                            <id>sign-artifacts</id>-->
+<!--                            <phase>verify</phase>-->
+<!--                            <goals>-->
+<!--                                <goal>sign</goal>-->
+<!--                            </goals>-->
                             <configuration>
                                 <!-- Prevent gpg from using pinentry programs -->
                                 <gpgArguments>
@@ -318,11 +318,11 @@
                         <version>1.6</version>
                         <executions>
                             <execution>
-                                <id>sign-artifacts</id>
-                                <phase>verify</phase>
-                                <goals>
-                                    <goal>sign</goal>
-                                </goals>
+<!--                                <id>sign-artifacts</id>-->
+<!--                                <phase>verify</phase>-->
+<!--                                <goals>-->
+<!--                                    <goal>sign</goal>-->
+<!--                                </goals>-->
                                 <configuration>
                                     <!-- Prevent gpg from using pinentry programs -->
                                     <gpgArguments>
