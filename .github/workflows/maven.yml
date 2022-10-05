@@ -32,6 +32,9 @@ jobs:
         with:
           redis-version: 4
 
+      - name: Maven install
+        run: mvn install -Dmaven.javadoc.skip=true -B -V
+
       - name: Publish to Apache Maven Central
         run: |
           curl -s get.sdkman.io | bash
