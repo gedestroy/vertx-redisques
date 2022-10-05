@@ -8,7 +8,7 @@ on:
   push:
     branches: [ "develop" ]
   pull_request:
-    branches: [ "develop" ]
+    branches: [ "master" ]
 
 jobs:
   build_maven:
