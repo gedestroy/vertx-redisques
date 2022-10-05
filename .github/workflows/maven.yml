@@ -33,8 +33,17 @@ jobs:
           redis-version: 4
 
       - name: Publish to Apache Maven Central
-        run: mvn clean deploy --no-plugin-updates --batch-mode -DperformRelease=true -DrepositoryId=orgswisspush-1727 -Prelease
+        run: |
+          curl -s get.sdkman.io | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy 3.0.8
+          
+          chmod +x .github/maybe-release-github.sh
+          .github/maybe-release-github.sh
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
           CI_PGP_PASSWORD: ${{ secrets.CI_PGP_PASSWORD }}
+
+      - name: after release
+        run: bash <(curl -s https://codecov.io/bash)
