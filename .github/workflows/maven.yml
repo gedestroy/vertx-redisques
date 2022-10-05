@@ -23,9 +23,6 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-          server-id: sonatype-nexus-snapshots # Value of the distributionManagement/repository/id field of the pom.xml
-          server-username: CI_DEPLOY_USERNAME # env variable for username in deploy
-          server-password: CI_DEPLOY_PASSWORD # env variable for token in deploy
 
       - name: Start Redis
         uses: supercharge/redis-github-action@1.4.0
@@ -34,12 +31,6 @@ jobs:
 
       - name: Build with Maven
         run: mvn -B package --file pom.xml
-
-      - name: Publish to GitHub Packages Apache Maven
-        run: mvn -B clean deploy
-        env:
-          CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
-          CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
 
       - name: Set up Apache Maven Central
         uses: actions/setup-java@v3
