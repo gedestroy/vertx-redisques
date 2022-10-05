@@ -246,10 +246,10 @@
                 https://oss.sonatype.org/content/repositories/snapshots
             </url>
             <releases>
-                <enabled>true</enabled>
+                <enabled>false</enabled>
             </releases>
             <snapshots>
-                <enabled>false</enabled>
+                <enabled>true</enabled>
             </snapshots>
         </repository>
     </repositories>
