@@ -33,7 +33,7 @@ jobs:
           redis-version: 4
 
       - name: Publish to Apache Maven Central
-        run: mvn --batch-mode deploy -s settings.xml -DrepositoryId=orgswisspush-1727
+        run: mvn --batch-mode -Prelease deploy
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
