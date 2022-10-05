@@ -21,7 +21,7 @@ jobs:
         with:
           distribution: 'temurin'
           java-version: '11'
-          server-id: sonatype-nexus-staging # Value of the distributionManagement/repository/id field of the pom.xml
+          server-id: sonatype-nexus-snapshots # Value of the distributionManagement/repository/id field of the pom.xml
           server-username: CI_DEPLOY_USERNAME # env variable for username in deploy
           server-password: CI_DEPLOY_PASSWORD # env variable for token in deploy
           gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }} # Value of the GPG private key to import
@@ -33,7 +33,7 @@ jobs:
           redis-version: 4
 
       - name: Publish to Apache Maven Central
-        run: mvn --batch-mode -Prelease deploy
+        run: mvn --batch-mode deploy
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
