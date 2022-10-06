@@ -35,8 +35,8 @@ jobs:
       - name: Maven install
         run: mvn install -Dmaven.javadoc.skip=true -B -V
 
-      - if: github.ref_name == 'master' && !github.ref_protected && github.repository == 'gedestroy/vertx-redisques'
       - name: Maven release
+        if: github.ref_name == 'master' && !github.ref_protected && github.repository == 'gedestroy/vertx-redisques'
         run: |
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
