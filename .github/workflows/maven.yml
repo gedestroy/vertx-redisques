@@ -6,9 +6,9 @@ name: Java CI with Maven
 on:
   workflow_dispatch:
   push:
-    branches: [ "master" ]
+    branches: [ "develop" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "develop" ]
 
 jobs:
   build_maven:
@@ -35,7 +35,8 @@ jobs:
       - name: Maven install
         run: mvn install -Dmaven.javadoc.skip=true -B -V
 
-      - name: Publish to Apache Maven Central
+      - if: github.ref_name == 'master' && !github.ref_protected && github.repository == 'gedestroy/vertx-redisques'
+      - name: Maven release
         run: |
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
