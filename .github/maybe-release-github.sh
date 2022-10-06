@@ -2,6 +2,10 @@
 set -ev
 if [ "$GITHUB_REF_NAME" == "develop" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
 then
+    curl -s get.sdkman.io | bash
+    source "$HOME/.sdkman/bin/sdkman-init.sh"
+    sdk install groovy 3.0.8
+
     git reset --hard
     git clean -fd
     git pull
