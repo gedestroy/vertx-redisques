@@ -7,14 +7,6 @@ class Staging {
     String ossPassword
 
     Staging(String userName, String password) {
-        if (userName == null || userName.isEmpty())
-            println "username should not empty"
-        else
-            println "found username"
-        if (password == null || password.isEmpty())
-            println "password should not empty"
-        else
-            println "found password"
         ossUserName = userName
         ossPassword = password
     }
