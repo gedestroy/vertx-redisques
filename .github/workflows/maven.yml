@@ -35,8 +35,13 @@ jobs:
       - name: Maven install
         run: mvn install -Dmaven.javadoc.skip=true -B -V
 
-      - name: Publish to Apache Maven Central
+      - if: github.ref_name == 'master' && !github.ref_protected && github.repository == 'gedestroy/vertx-redisques'
+      - name: Maven release
         run: |
+          curl -s get.sdkman.io | bash
+          source "$HOME/.sdkman/bin/sdkman-init.sh"
+          sdk install groovy 3.0.8
+          
           chmod +x .github/maybe-release-github.sh
           .github/maybe-release-github.sh
         env:
