@@ -2,6 +2,7 @@
 set -ev
 if [ "$GITHUB_REF_NAME" == "master" ] && [ "$GITHUB_REF_PROTECTED" == "false" ] && [ "$GITHUB_REPOSITORY" == "gedestroy/vertx-redisques" ]
 then
+    git fetch
     git reset --hard
     git clean -fd
     git pull
