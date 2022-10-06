@@ -8,7 +8,7 @@ on:
   push:
     branches: [ "master" ]
   pull_request:
-    branches: [ "master" ]
+    branches: [ "master", "develop" ]
 
 jobs:
   build_maven:
@@ -36,7 +36,7 @@ jobs:
         run: mvn install -Dmaven.javadoc.skip=true -B -V
 
       - name: Maven release
-        if: github.ref_name == 'master' && !github.ref_protected && github.repository == 'gedestroy/vertx-redisques'
+        if: github.ref_name == 'master' && github.event_name != 'pull_request' && github.repository == 'swisspush/vertx-redisques'
         run: |
           curl -s get.sdkman.io | bash
           source "$HOME/.sdkman/bin/sdkman-init.sh"
