@@ -2,6 +2,7 @@
 set -ev
 git fetch
 git reset --hard
+git clean -fd
 git pull
 groovy staging.groovy drop
 rc=$?
