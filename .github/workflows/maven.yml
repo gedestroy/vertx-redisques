@@ -6,7 +6,6 @@ name: Java CI with Maven
 on:
   workflow_dispatch:
   push:
-    branches: [ "master" ]
   pull_request:
     branches: [ "master", "develop" ]
 
@@ -25,17 +24,17 @@ jobs:
           server-username: CI_DEPLOY_USERNAME # env variable for username in deploy
           server-password: CI_DEPLOY_PASSWORD # env variable for token in deploy
           gpg-private-key: ${{ secrets.CI_GPG_PRIVATE_KEY }} # Value of the GPG private key to import
-          gpg-passphrase: CI_PGP_PASSWORD # env variable for GPG private key passphrase
+          gpg-passphrase: ${{ secrets.CI_GPG_PASSPHRASE }} # env variable for GPG private key passphrase
 
       - name: Start Redis
         uses: supercharge/redis-github-action@1.4.0
         with:
           redis-version: 4
 
-      - name: Maven install
+      - name: Install, unit test, integration test
         run: mvn install -Dmaven.javadoc.skip=true -B -V
 
-      - name: Maven release
+      - name: Release to maven central
         if: github.ref_name == 'master' && github.event_name != 'pull_request' && github.repository == 'swisspush/vertx-redisques'
         run: |
           curl -s get.sdkman.io | bash
@@ -47,7 +46,6 @@ jobs:
         env:
           CI_DEPLOY_USERNAME: ${{ secrets.CI_DEPLOY_USERNAME }}
           CI_DEPLOY_PASSWORD: ${{ secrets.CI_DEPLOY_PASSWORD }}
-          CI_PGP_PASSWORD: ${{ secrets.CI_PGP_PASSWORD }}
 
-      - name: after release
+      - name: After release
         run: bash <(curl -s https://codecov.io/bash)
