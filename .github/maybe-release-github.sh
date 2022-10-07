@@ -1,6 +1,7 @@
 #!/bin/bash
 set -ev
 git fetch
+git pull
 groovy staging.groovy drop
 rc=$?
 if [ $rc -ne 0 ]
